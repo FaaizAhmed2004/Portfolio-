@@ -1,0 +1,129 @@
+@import "tailwindcss";
+
+:root {
+  color-scheme: light;
+  --background: #f8fafc;
+  --foreground: #0f172a;
+  --surface: rgba(255, 255, 255, 0.9);
+  --border: rgba(15, 23, 42, 0.12);
+  --shadow-glow: rgba(14, 165, 233, 0.16);
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #f8fafc;
+    --foreground: #0f172a;
+  }
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  min-height: 100%;
+  background: radial-gradient(circle at top, rgba(14, 165, 233, 0.12), transparent 24%),
+    radial-gradient(circle at 20% 20%, rgba(167, 139, 250, 0.12), transparent 16%),
+    radial-gradient(circle at right, rgba(59, 130, 246, 0.08), transparent 28%),
+    var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans), system-ui, sans-serif;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+@media (hover: hover) {
+  body {
+    cursor: none;
+  }
+}
+
+* {
+  box-sizing: border-box;
+}
+
+::selection {
+  background: rgba(14, 165, 233, 0.24);
+  color: #0f172a;
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+input,
+textarea {
+  color: inherit;
+}
+
+.blinking-cursor {
+  animation: blink 1.2s steps(1) infinite;
+}
+
+@keyframes blink {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+}
+
+@layer utilities {
+  [class*="bg-slate-9"],
+  [class*="bg-black"],
+  [class*="bg-white/5"],
+  [class*="bg-white/10"] {
+    background-color: rgba(255, 255, 255, 0.95) !important;
+    color: #0f172a !important;
+  }
+
+  [class*="border-white/10"],
+  [class*="border-white/5"] {
+    border-color: rgba(15, 23, 42, 0.12) !important;
+  }
+
+  [class*="text-slate-300"],
+  [class*="text-slate-400"],
+  [class*="text-slate-500"] {
+    color: #475569 !important;
+  }
+
+  [class*="text-slate-100"],
+  [class*="text-slate-200"],
+  [class*="text-white"] {
+    color: #0f172a !important;
+  }
+
+  .animate-fade-in {
+    animation: fadeIn 1.6s ease forwards;
+  }
+
+  @keyframes fadeIn {
+    0% {
+      opacity: 0;
+      transform: translateY(18px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+}
